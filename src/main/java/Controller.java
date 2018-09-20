@@ -225,33 +225,27 @@ public class Controller {
                 checkIndex.setText("ยังไม่มีรายจ่าย");
             }
         } else {
-            int compare = moneyBook.getExpense() - moneyBook.setOfExpense.get(index) + newValue;
-            if (compare > moneyBook.getIncome()) {
-                checkIndex.setText("เมื่อแก้ไขรายจ่ายมากกว่ารายรับ กรุณากรอกค่าที่ถูกต้อง");
-                textFieldForEditExpense.clear();
-            } else {
-                moneyBook.editExpense(index, newValue);
+            moneyBook.editExpense(index, newValue);
 
-                try {
-                    Path file = Paths.get("D:\\expense.txt");
-                    BufferedWriter writer = Files.newBufferedWriter(file,
-                            StandardCharsets.UTF_8);
-                    for (int i = 0; i < moneyBook.setOfExpense.size(); i++) {
-                        expense += moneyBook.setOfExpense.get(i);
-                        writer.write(moneyBook.setOfExpense.get(i) + "");
-                        writer.newLine();
-                    }
-                    writer.close();
-                } catch (IOException ex) {
-                    System.err.println("IOException: " + ex.getMessage());
+            try {
+                Path file = Paths.get("D:\\expense.txt");
+                BufferedWriter writer = Files.newBufferedWriter(file,
+                        StandardCharsets.UTF_8);
+                for (int i = 0; i < moneyBook.setOfExpense.size(); i++) {
+                    expense += moneyBook.setOfExpense.get(i);
+                    writer.write(moneyBook.setOfExpense.get(i) + "");
+                    writer.newLine();
                 }
-                textAreaExpense.setText(moneyBook.getSetOfExpense().toString());
-
-                moneyBook.setExpense(expense);
-                textFieldForEditExpense.clear();
-                showBalance.setText(moneyBook.showMoneyBook());
-                showBalance.setTextFill(Color.BLUE);
+                writer.close();
+            } catch (IOException ex) {
+                System.err.println("IOException: " + ex.getMessage());
             }
+            textAreaExpense.setText(moneyBook.getSetOfExpense().toString());
+
+            moneyBook.setExpense(expense);
+            textFieldForEditExpense.clear();
+            showBalance.setText(moneyBook.showMoneyBook());
+            showBalance.setTextFill(Color.BLUE);
         }
     }
 }
