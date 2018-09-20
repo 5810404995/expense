@@ -32,8 +32,9 @@ public class MoneyBook {
             if (money < 0){
             }else{
                 this.balance -= money;
-                this.expense += money;}
-            setOfExpense.add(money);
+                this.expense += money;
+                setOfExpense.add(money);
+            }
         }
     }
 
@@ -94,6 +95,5 @@ public class MoneyBook {
     public void setExpense(int expense) {
         this.expense = expense;
     }
-
 }
 
