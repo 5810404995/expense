@@ -7,8 +7,9 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         format = {"pretty", "html:target/cucumber"},
-        features = {"classpath:features/moneyBook.feature"}
+        features = {"classpath:features/edit.feature"}
 )
 
-public class UATMoneyBook {
+public class UATEdit {
 }
+

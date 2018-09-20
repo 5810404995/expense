@@ -1,4 +1,4 @@
-# lab4
+# Lab4, Lab6
 
 by ozone (5810404995)
 

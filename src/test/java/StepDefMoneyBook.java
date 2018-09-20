@@ -16,9 +16,10 @@ public class StepDefMoneyBook {
         moneyBook = new MoneyBook();
     }
 
-    @Given("a user with balance (\\d+) exists")
-    public void a_user_with_balance_exists(int money){
-        moneyBook.earnMoney(money);
+    @Given("a user with income (\\d+) and expense (\\d+)")
+    public void a_user_with_balance_exists(int income, int expense) throws NotEnoughBalanceException{
+        moneyBook.earnMoney(income);
+        moneyBook.payMoney(expense);
     }
 
     @When("I earn money (\\d+) from my mother")
@@ -37,9 +38,22 @@ public class StepDefMoneyBook {
                 () -> moneyBook.payMoney(5000));
     }
 
+    @When("I edit income in index (\\d+) to (\\d+)")
+    public void i_edit_income_in_index_to(int index, int newValue){
+        moneyBook.editIncome(index, newValue);
+    }
+
+    @When("I edit expense in index (\\d+) to (\\d+)")
+    public void i_edit_expense_in_index_to(int index, int newValue){
+        moneyBook.editExpense(index, newValue);
+    }
+
     @Then("my money book balance is (\\d+)")
     public void my_money_book_balance_is(int balance){
         assertEquals(balance, moneyBook.getBalance());
     }
+
+
+
 }
 
